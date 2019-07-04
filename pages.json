@@ -6,5 +6,10 @@
 				"navigationBarTitleText": ""
 			}
 		}
+        ,{
+            "path" : "pages/cart/cart",
+            "style" : {}
+        }
+        
     ]
 }
