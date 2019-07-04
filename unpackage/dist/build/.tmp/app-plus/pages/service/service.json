@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "客服",
+  "navigationBarBackgroundColor": "white",
+  "backgroundColorTop": "#e5e5e5",
+  "backgroundColorBottom": "#e5e5e5",
+  "softinputNavBar": "none",
+  "bounce": "none",
+  "usingComponents": {}
+}

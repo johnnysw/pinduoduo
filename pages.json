@@ -1,6 +1,7 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+<<<<<<< HEAD
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": ""
@@ -12,4 +13,26 @@
         }
         
     ]
+=======
+            "path" : "pages/service/service",
+            "style" : {
+				"navigationBarTitleText":"客服",
+            	"navigationBarBackgroundColor":"white",
+            	"backgroundColorTop":"#e5e5e5",
+            	"backgroundColorBottom":"#e5e5e5",
+            	"app-plus":{
+            		"softinputNavBar":"none",
+            		"bounce":"none"
+            	}
+            }
+        }
+        
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+>>>>>>> fc7cdbec0399f3e2be94811f6e0dab9ebba27466
 }
