@@ -20,6 +20,28 @@
 					"bounce": "none"
 				}
 			}
+		},
+		{
+			"path": "pages/confirm-order/confirm-order",
+			"style": {
+				"navigationBarTitleText": "确认订单",
+				"navigationBarBackgroundColor": "white",
+				"app-plus": {
+					"softinputNavBar": "none",
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/confirm-order/confirm-order-after",
+			"style": {
+				"navigationBarTitleText": "选择地址",
+				"navigationBarBackgroundColor": "white",
+				"app-plus": {
+					"softinputNavBar": "none",
+					"bounce": "none"
+				}
+			}
 		}
 	],
 	"globalStyle": {
