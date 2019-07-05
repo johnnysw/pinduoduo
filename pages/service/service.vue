@@ -6,7 +6,9 @@
 				<!--发送链接-->
 				<view class="container">
 					<view class="top">
-						<image src="../../static/1.jpg" class="send-img"></image>
+						<view class = "img-container">
+							<image src="../../static/1.jpg" class="send-img"></image>
+						</view>
 						<view class="detail">
 							<view class="detail-content">{{detailContent}}</view>
 							<view class="price">{{price}}</view>
@@ -105,7 +107,7 @@
 				</view>
 			</view>
 			<view class="more" @tap="showMore" :class="{hidden:hideAdd}">
-				<view class="icon add"></view>
+					<image src="../../static/2.png" class="add"></image>
 			</view>
 			<view class="send" @tap="sendText" :class="{hidden:hideSend}">
 				<view class="btn" >发送</view>
