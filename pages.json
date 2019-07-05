@@ -28,6 +28,10 @@
 				"app-plus":{"titleNView":false}
 			}
 		}
+        ,{
+            "path" : "pages/collageSheet/collageSheet",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
