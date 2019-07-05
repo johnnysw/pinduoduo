@@ -6,7 +6,14 @@
 				"navigationBarTitleText": "uni-app"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/liveproductlist/liveproductlist",
+            "style" : {
+				"navigationBarTitleText": "直播",
+				"app-plus":{"titleNView":false}
+			}
+		}
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
