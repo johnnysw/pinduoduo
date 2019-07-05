@@ -31,7 +31,14 @@
         ,{
             "path" : "pages/collageSheet/collageSheet",
             "style" : {}
+        },{
+            "path" : "pages/purchase_list/purchase_list",
+            "style" : {
+				"navigationBarTitleText": "团购列表",
+				"enablePullDownRefresh": true
+			}
         }
+		
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
