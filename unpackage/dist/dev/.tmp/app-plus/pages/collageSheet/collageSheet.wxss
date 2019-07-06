@@ -1,0 +1,207 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 拼单人数 */
+.total {
+	background: #fff;
+}
+.content {
+	margin: 10rpx 10rpx;
+}
+.up {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	height: 90rpx;
+	line-height: 90rpx;
+	font-size: 26rpx;
+}
+.cuIcon-right {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	text-align: right;
+}
+.tip {
+	font-weight: bold;
+}
+/* 拼单详情 */
+.wai {
+	height: 230rpx;
+	overflow: hidden;
+}
+.list {
+	height: 115rpx;
+}
+.middle {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	height: 115rpx;
+	border-top: 2rpx solid #ccc;
+}
+.user {
+	margin: auto 0;
+	font-weight: bold;
+}
+.img {
+	width: 100%;
+	height: 100%;
+	-webkit-border-radius: 50%;
+	        border-radius: 50%;
+}
+.name {
+	margin: 10rpx;
+	font-size: 26rpx;
+}
+.two {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	margin: 20rpx 10rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+}
+.num {
+	color: #f00;
+}
+.lack {
+	text-align: right;
+	font-weight: bold;
+	font-size: 24rpx;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+}
+.time {
+	text-align: right;
+	font-size: 24rpx;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+}
+.pindan {
+	line-height: 115rpx;
+	margin: auto 0 auto auto;
+}
+.btn {
+	color: #fff;
+	background: red;
+	width: 160rpx;
+	height: 68rpx;
+	line-height: 68rpx;
+	font-size: 26rpx;
+}
+
