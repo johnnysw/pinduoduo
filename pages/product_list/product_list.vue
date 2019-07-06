@@ -39,7 +39,7 @@
 
 <script>
 	
-	import {uniLoadMore} from '@dcloudio/uni-ui/lib/uni-load-more/uni-load-more.vue'
+	import {uniLoadMore} from './../../static/uni-load-more'
 	var  _self;
 	var  page = 1;
 	export default {
