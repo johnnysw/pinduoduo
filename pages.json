@@ -20,7 +20,16 @@
 					"bounce": "none"
 				}
 			}
-		}
+		},{
+			"path": "pages/product_list/product_list",
+			"style": {
+				"bounce" : "none" ,
+				"navigationBarTitleText":"商品列表",
+				"navigationBarBackgroundColor":"white",
+                "enablePullDownRefresh": true
+				
+				}}
+      
 	    ,{
             "path" : "pages/liveproductlist/liveproductlist",
             "style" : {
