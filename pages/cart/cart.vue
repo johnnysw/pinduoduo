@@ -1,43 +1,29 @@
 <template>
-	<view class="content">
-		<view class='shadow'></view><!-- 上部阴影部分 -->
-		<view class='cart'><!-- 购物车部分 -->
-            <view class='img-content'>
-            <img src="../../static/cate1.jpg" alt="">
-            <view class='img-text'>
+	<view class='shadow'>
+	<view class='cart'>
+		<view class='header'>
+			<img src="../../static/cate1.jpg" alt="">
+			<view class='text'>
 				<view>￥{{this.price}}</view>
 				<text>请选择：颜色分类 尺寸</text>
-            </view>
-            </view>
-		<hr>
-		<view class='size'>
-			<view class='num'>尺码</view>
-				<view 
-				:class='{select:sizeObj.isSel,selected:sizeObj.isSelected}' 
-				@click='change(sizeObj,index)'
-				v-for='(sizeObj,index) in sizeList' 
-				:key='index' >{{sizeObj.size}}</view>
-		</view>
-		<hr>
-		<view class='color'>
-			<view class='num'>颜色分类</view>
-				<view 
-				:class='{select:colorObj.isSel,selected:colorObj.isSelected}' 
-				@click='change(colorObj,index)'
-				v-for='(colorObj,index) in colorList' 
-				:key='index'>{{colorObj.color}}</view>
-		</view>	
-		<hr>
-		<view class='bottom'>
-			<text class='num'>购买数量</text>
-			<view class='btn'>
-				<view class='select' @click='reduce()'>-</view>
-				<view class='select'>{{this.shuliang}}</view>
-				<view class='select' @click='add()'>+</view>
 			</view>
 		</view>
+		<view class='content'>
+			<view class='list' v-for='(obj,index) in bigList' :key='index'>
+				<view class='select'>{{obj.name}}</view>
+				<view class='kind' v-for='(kindObj,index) in obj.kind' :key='index'>{{kindObj.size}}</view>
+			</view>
+			<view class='buy'>
+				<text class='select'>购买数量</text>
+				<view class='btn'>
+					<view class='kind' @click='reduce()'>-</view>
+					<view class='kind'>{{this.shuliang}}</view>
+					<view class='kind' @click='add()'>+</view>
+				</view>
+			</view>
 		</view>
 		<view class='footer'>确定</view>
+	</view>
 	</view>
 </template>
 
@@ -45,46 +31,35 @@
 	export default {
 		data() {
 			return {
-				price:350,
 				shuliang:1,
-				sizeList:[{
-					size:'S',
-					isSelected:false,
-					isSel:true
+				price:350,
+				bigList:[{
+					name:'尺码',
+					kind:[{
+						size:'S'
+					},{
+						size:'M'
+					},{
+						size:'L'
+					},{
+						size:'XL'
+					}]
 				},{
-					size:'M',
-					isSelected:false,
-					isSel:true
-				},{
-					size:'L',
-					isSelected:false,
-					isSel:true
-				},{
-					size:'XL',
-					isSelected:false,
-					isSel:true
-				}],
-				colorList:[{
-					color:'卡其',
-					isSelected:false,
-					isSel:true
-				},{
-					color:'白色',
-					isSelected:false,
-					isSel:true
-				},{
-					color:'黑色',
-					isSelected:false,
-					isSel:true
-				},{
-					color:'藏蓝',
-					isSelected:false,
-					isSel:true
-				},]
+					name:'颜色分类',
+					kind:[{
+						size:'卡其'
+					},{
+						size:'白色'
+					},{
+						size:'黑色'
+					},{
+						size:'藏蓝'
+					}]
+				}]
 			}
 		},
 		onLoad() {
-			 
+
 		},
 		methods: {
 			add(){
@@ -92,100 +67,89 @@
 			},
 			reduce(){
 				this.shuliang--;
-			},
-			change(sizeObj,index){
-				sizeObj.isSelected=!sizeObj.isSelected;
 			}
 		}
 	}
 </script>
 
 <style>
-	ul,li{
-		list-style: none;
-		padding: 0 0;
+	.shadow{
+		position: fixed;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+	.cart{
+		width: 100%;
+		height: 620upx;
+		position: fixed;
+		bottom:0;
+		background: #fff;
+		
+	}
+	.header{
+		width: 100%;
+		height: 200upx;
+		position:sticky;
+	    top:0;
+		border:0.5upx solid #ddd;
+	}
+	.header img{
+		width: 160upx;
+		height: 160upx;
+	}
+	.text{
+		position: absolute;
+		top:100upx;
+		left:200upx;
+		color:#999;
+		font-size:20upx;
+	}
+	.text view{
+		color:#ef1c00;
 	}
 	.content{
 		width: 100%;
-		height: 100%;
-		display:flex;
-		position:fixed;
-		flex-direction: column;
-	}
-	.img-content{
-		display:flex;
-		flex:3;
-		margin-bottom: 10px;
-	} 
-	.img-text{
-		flex:1;
-		margin-top: 50px;
-	}
-	.img-text view{
-		color:#ef1c00;
-		font-size: 20px;
-	}
-	.shadow{
-		width: 100%;
-		height: 270px;
-		background: rgba(11,6,6,0.8);
-	}
-	.cart{
-		height: 320px;
-		flex:1;
-		background: #fff;
-		padding: 10px 10px 0 10px;
-		display: flex;
-		flex-direction: column;
-	}
-	.cart img{
-		width: 100px;
-		height: 100px;
-		margin-right:10px ;
-	}
-	.select{
-		width: 40px;
-		height: 20px;
-		background: #eee;
-		border-radius: 4px;
-		text-align:center;
-		line-height: 20px;
-		color:#000;
-		float:left;
-		margin-right: 5px;
-	}
-	.selected{
-		color:#ef1c00;
-		background:#fbebee;
-	}
-	.size{
-		position: relative;
-		width: 100%;
-		height: 50px;
-		flex:2;
-		margin: 10px 0;
-	}
-	.color{
-		flex:2;
-		margin: 10px 0;
-	}
-	.bottom{
-		flex:1;
-		margin: 10px 0;
+		height: 320upx;
+		overflow: auto;
 	}
 	.footer{
 		width: 100%;
-		height: 110px;
+		height: 100upx;
+		line-height: 100upx;
+		position: sticky;
+		bottom:0;
 		background: #ef1c00;
-		text-align: center;
+		text-align:center;
 		color:#fff;
-		font-size: 20px;
-		line-height: 60px;
+		font-size: 30upx;
 	}
-	.num{
+	.list{
+		height: 120upx;
+		width: 100%;
+		border-bottom:1px solid #ddd;
+	}
+	.select{
 		color: #000;
-		font-size: 15px;
-		margin-bottom:10px;
+		font-size: 10upx;
+	}
+	.kind{
+		width: 70upx;
+		height: 38upx;
+		background: #eee;
+		border-radius: 6upx;
+		text-align:center;
+		line-height: 38upx;
+		color:#000;
+		float:left;
+		margin-right: 10upx;
+		font-size: 2upx;
+	}
+	.buy{
+		height: 80upx;
+		border-bottom:1px solid #ddd;
 	}
 	.btn{
 		float:right;
