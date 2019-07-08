@@ -1,41 +1,28 @@
 <template>
-	<view class="content">
-		<view class='shadow'></view><!-- 上部阴影部分 -->
-		<view class='cart'><!-- 购物车部分 -->
-            <view class='img-content'>
-            <img src="../../static/cate1.jpg" alt="">
-            <view class='img-text'>
-				<view>￥{{this.price}}</view>
-				<text>请选择：颜色分类 尺寸</text>
-            </view>
-            </view>
-		<hr>
-		<view class='size'>
-			<view class='num'>尺码</view>
-				<view 
-				:class='{select:sizeObj.isSel,selected:sizeObj.isSelected}' 
-				@click='change(sizeObj,index)'
-				v-for='(sizeObj,index) in sizeList' 
-				:key='index' >{{sizeObj.size}}</view>
-		</view>
-		<hr>
-		<view class='color'>
-			<view class='num'>颜色分类</view>
-				<view 
-				:class='{select:colorObj.isSel,selected:colorObj.isSelected}' 
-				@click='change(colorObj,index)'
-				v-for='(colorObj,index) in colorList' 
-				:key='index'>{{colorObj.color}}</view>
-		</view>	
-		<hr>
-		<view class='bottom'>
-			<text class='num'>购买数量</text>
-			<view class='btn'>
-				<view class='select' @click='reduce()'>-</view>
-				<view class='select'>{{this.shuliang}}</view>
-				<view class='select' @click='add()'>+</view>
+	<view class='shadow'>
+		<view class='cart'>
+			<view class='header'>
+				<img src="../../static/cate1.jpg" alt="">
+				<view class='text'>
+					<view>￥{{this.price}}</view>
+					<text>请选择:颜色分类 尺寸</text>
+				</view>
 			</view>
-		</view>
+			<view class='content'>
+				<view class='list' v-for='(item,index) in bigList' :key='index'>
+					<view class='select'>{{item.name}}</view>
+					<view class='kind' :class='{selected: childItem.selected}' v-for='(childItem, childIndex) in smallList' v-if="childItem.pid === item.id"
+					 @click='change(childIndex, childItem.pid)' :key='childIndex'>{{childItem.name}}</view>
+				</view>
+				<view class='buy'>
+					<text class='select'>购买数量</text>
+					<view class='btn'>
+						<view class='kind reduce' @click='reduce()'>-</view>
+						<view class='kind'>{{this.shuliang}}</view>
+						<view class='kind add' @click='add()'>+</view>
+					</view>
+				</view>
+			</view>
 		</view>
 		<view class='footer'>确定</view>
 	</view>
@@ -45,149 +32,199 @@
 	export default {
 		data() {
 			return {
-				price:350,
-				shuliang:1,
-				sizeList:[{
-					size:'S',
-					isSelected:false,
-					isSel:true
-				},{
-					size:'M',
-					isSelected:false,
-					isSel:true
-				},{
-					size:'L',
-					isSelected:false,
-					isSel:true
-				},{
-					size:'XL',
-					isSelected:false,
-					isSel:true
-				}],
-				colorList:[{
-					color:'卡其',
-					isSelected:false,
-					isSel:true
-				},{
-					color:'白色',
-					isSelected:false,
-					isSel:true
-				},{
-					color:'黑色',
-					isSelected:false,
-					isSel:true
-				},{
-					color:'藏蓝',
-					isSelected:false,
-					isSel:true
-				},]
+				specSelected: [],
+				shuliang: 1,
+				price: 350,
+				bigList: [
+					{
+						id: 1,
+						name: '尺寸',
+					},
+					{	
+						id: 2,
+						name: '颜色分类',
+					},
+				],
+				smallList: [
+					{
+						id: 1,
+						pid: 1,
+						name: 'S',
+					},
+					{
+						id: 2,
+						pid: 1,
+						name: 'M',
+					},
+					{
+						id: 3,
+						pid: 1,
+						name: 'L',
+					},
+					{
+						id: 4,
+						pid: 1,
+						name: 'XL',
+					},
+					{
+						id: 5,
+						pid: 2,
+						name: '白色',
+					},
+					{
+						id: 6,
+						pid: 2,
+						name: '黑色',
+					},
+					{
+						id: 7,
+						pid: 2,
+						name: '藏蓝',
+					},
+				]
+
 			}
 		},
 		onLoad() {
-			 
+
 		},
 		methods: {
-			add(){
+			add() {
 				this.shuliang++;
 			},
-			reduce(){
+			reduce() {
 				this.shuliang--;
 			},
-			change(sizeObj,index){
-				sizeObj.isSelected=!sizeObj.isSelected;
+			change(index, pid){
+				let list = this.smallList;
+				list.forEach(item=>{
+					if(item.pid === pid){
+						this.$set(item, 'selected', false);
+					}
+				})
+			
+				this.$set(list[index], 'selected', true);
+				this.specSelected = []; 
+				list.forEach(item=>{ 
+					if(item.selected === true){ 
+						this.specSelected.push(item); 
+					} 
+				})
+				
 			}
 		}
 	}
 </script>
 
 <style>
-	ul,li{
-		list-style: none;
-		padding: 0 0;
-	}
-	.content{
+	.shadow {
+		position: fixed;
+		top: 0;
 		width: 100%;
 		height: 100%;
-		display:flex;
-		position:fixed;
-		flex-direction: column;
+		z-index: 1;
+		background-color: rgba(0, 0, 0, 0.4);
 	}
-	.img-content{
-		display:flex;
-		flex:3;
-		margin-bottom: 10px;
-	} 
-	.img-text{
-		flex:1;
-		margin-top: 50px;
-	}
-	.img-text view{
-		color:#ef1c00;
-		font-size: 20px;
-	}
-	.shadow{
+
+	.cart {
 		width: 100%;
-		height: 270px;
-		background: rgba(11,6,6,0.8);
-	}
-	.cart{
-		height: 320px;
-		flex:1;
+		height: 520upx;
+		position: fixed;
+		bottom: 100upx;
 		background: #fff;
-		padding: 10px 10px 0 10px;
-		display: flex;
-		flex-direction: column;
+		box-sizing: border-box;
+		padding: 0 20upx;
 	}
-	.cart img{
-		width: 100px;
-		height: 100px;
-		margin-right:10px ;
-	}
-	.select{
-		width: 40px;
-		height: 20px;
-		background: #eee;
-		border-radius: 4px;
-		text-align:center;
-		line-height: 20px;
-		color:#000;
-		float:left;
-		margin-right: 5px;
-	}
-	.selected{
-		color:#ef1c00;
-		background:#fbebee;
-	}
-	.size{
-		position: relative;
+
+	.header {
 		width: 100%;
-		height: 50px;
-		flex:2;
-		margin: 10px 0;
+		height: 200upx;
+		position: sticky;
+		top: 0;
+		border-bottom: 0.5upx solid #ddd;
 	}
-	.color{
-		flex:2;
-		margin: 10px 0;
+
+	.header img {
+		width: 160upx;
+		height: 160upx;
+		margin-top: 20upx;
 	}
-	.bottom{
-		flex:1;
-		margin: 10px 0;
+
+	.text {
+		position: absolute;
+		top: 100upx;
+		left: 180upx;
+		color: #999;
+		font-size: 20upx;
 	}
-	.footer{
+
+	.text view {
+		color: #ef1c00;
+	}
+
+	.content {
 		width: 100%;
-		height: 110px;
+		height: 320upx;
+		overflow: auto;
+	}
+
+	.footer {
+		width: 100%;
+		height: 100upx;
+		line-height: 100upx;
+		position: fixed;
+		bottom: 0;
 		background: #ef1c00;
 		text-align: center;
-		color:#fff;
-		font-size: 20px;
-		line-height: 60px;
+		color: #fff;
+		font-size: 30upx;
 	}
-	.num{
+
+	.list {
+		height: 120upx;
+		width: 100%;
+		border-bottom: 2upx solid #ddd;
+	}
+
+	.select {
 		color: #000;
-		font-size: 15px;
-		margin-bottom:10px;
+		font-size: 10upx;
+		margin-top: 20upx;
 	}
-	.btn{
-		float:right;
+
+	.kind {
+		width: 70upx;
+		height: 38upx;
+		background: #eee;
+		border-radius: 6upx;
+		text-align: center;
+		line-height: 38upx;
+		color: #000;
+		float: left;
+		margin: 20upx 10upx 0 0;
+		font-size: 2upx;
+	}
+
+	.buy {
+		height: 80upx;
+		border-bottom: 1px solid #ddd;
+	}
+
+	.btn {
+		float: right;
+	}
+
+	.reduce {
+		color: #989898;
+	}
+
+	.add {
+		color: #666;
+	}
+
+	.selected {
+		color: #ee1d00;
+		background: #fff;
+		border: 2upx solid #ee1d00;
 	}
 </style>
