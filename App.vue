@@ -1,7 +1,6 @@
 <script>
 	import Vue from 'vue'
 	export default {
-<<<<<<< HEAD
 		onLaunch: function() {
 			uni.getSystemInfo({
 				success: function(e) {
@@ -25,10 +24,6 @@
 					// #endif
 				}
 			})
-=======
-		onLaunch: function () {
-			console.log('App Launch')
->>>>>>> tmp
 		},
 		onShow: function () {
 			console.log('App Show')
