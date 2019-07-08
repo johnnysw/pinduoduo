@@ -43,9 +43,6 @@ page{
 		&.paizhao:before {
 		  content: "\e63e";
 		}
-		&.add:before {
-		  content: "\e655";
-		}
 		&.close:before {
 		  content: "\e607";
 		}
@@ -61,29 +58,49 @@ textarea{
 }
 .top{
 	display:flex;
+	height:15vh;
 }
 .send-img{
-	width:30vw;
-	height:30vw;
-	margin-right:2vw;
-	margin-bottom:2vw;
+	width:21.3vw;
+	height:21.3vw;
+	pisition:absolute;
+	top:50%;
+	left:50%;
+	margin-top:-10.65vw;
+	margin-left:-10.65vw;
+}
+.img-container{
+	width: 26.8vw;
+	
+	position: relative;
 }
 .price{
 	color:red;
+	margin-top:3vh;
+	font-size:15px;
 }
 .bottom{
+	height:6.8vh;
 	color:red;
 	text-align: center;
+	line-height: 6.8vh;
 	border-top-style: solid;
-	border-top-color: #999
+	border-top-color: #dddddd;
+	border-top-width: 1px;
+	font-size: 14px;
 }
 .container{
 	background: white;
-	padding:2vw;
-	margin-top:2vw;
+	margin:0 auto;
+	margin-top:4.6vw;
+	height:21.8vh;
 }
 .detail{
 	flex:1;
+}
+.detail-content{
+	font-size: 14px;
+	margin-top:2.2vh;
 }
 .popup-layer{
 	&.showLayer{transform: translate3d(0,-42vw,0);}
@@ -175,7 +192,7 @@ textarea{
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			background:linear-gradient(to right,#f09b37,#eb632c);
+			background:red;
 			color: #fff;
 			border-radius: 6upx;
 			font-size: 24upx;
@@ -234,6 +251,8 @@ textarea{
 }
 
 .add{
+	height:30px;
+	width: 30px;
 }
 .content{
 	width: 100%;
