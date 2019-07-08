@@ -45,17 +45,13 @@
 		data() {
 			return {
 				num: [], //人数
-				userList: [] //存所有的数据
+				userList: [], //存所有的数据
+				time: [], //当前时间减去模拟时间的时间差
+				time1: [] //一天的毫秒数减去时间差的结果
 			}
 		},
 		created() {
 			this.getUser();
-			this.countdown();
-		},
-		destroyed() {
-			this.list.forEach((val) => {
-				val.remainTime = 0
-			})
 		},
 		methods: {
 			getUser() {
@@ -64,36 +60,51 @@
 					})
 					.then(data => { //data为一个数组，数组第一项为错误信息，第二项为返回数据
 						var [error, res] = data;
-						console.log(res.data);
+						// console.log(res.data);
 						this.userList = [...this.userList, ...res.data.data.record];
 						this.num = this.userList.length;
 						console.log(this.userList);
-					})
-			},
-			countdown() {
-				let self = this;
-				let timer = setInterval(function() {
-					for (let i = 0; i < self.userList.length; i++) {
-						self.userList[i].remainTime -= 1000;
-						let t = self.userList[i].remainTime;
-						if (t > 0) {
-							let hour = Math.floor((t / 3600000) % 24);
-							let min = Math.floor((t / 60000) % 60);
-							let sec = Math.floor((t / 1000) % 60);
-							hour = hour < 10 ? '0' + hour : hour;
-							min = min < 10 ? '0' + min : min;
-							sec = sec < 10 ? '0' + sec : sec;
-							let format = '';
-							format = `${hour} : ${min} : ${sec} `;
-							self.userList[i].remainTimeStr = format;
-						} else {
-							// 进行判断 如果数据内所有的倒计时已经结束，那么结束定时器， 如果没有那么继续执行定时器
-							let flag = self.userList.every((val, ind) => val.remainTime <= 0);
-							if (flag) clearInterval(timer);
-							self.userList[i].remainTimeStr = `00 : 00 : 00 `;
+						for (var i = 0; i < this.userList.length; i++) {
+							var date1 = this.userList[i].date; //取出每个时间
+							var date2 = new Date(); //当前时间
+							var date3 = date2.getTime() - new Date(date1).getTime(); //计算时间差
+							this.time.push(date3); //存入数组
 						}
-					}
-				}, 1000)
+						// console.log(this.time);
+						for (var j = 0; j < this.time.length; j++) {
+							var oneday = 86400000;
+							var count = oneday - this.time[j]; //24小时减去时间差
+							this.time1.push(count); //存入数组
+						}
+						for (var x = 0; x < this.time1.length; x++) {
+							for (var y = 0; y < this.userList.length; y++) {
+								this.userList[y].remainTime = this.time1[y]; //把time1中的值分别赋给userList.remainTime
+							}
+						}
+						let self = this;
+						let timer = setInterval(function() {
+							for (let i = 0; i < self.userList.length; i++) {
+								self.userList[i].remainTime -= 1000;
+								let t = self.userList[i].remainTime;
+								if (t > 0) {
+									let hour = Math.floor((t / 3600000) % 24);
+									let min = Math.floor((t / 60000) % 60);
+									let sec = Math.floor((t / 1000) % 60);
+									hour = hour < 10 ? '0' + hour : hour;
+									min = min < 10 ? '0' + min : min;
+									sec = sec < 10 ? '0' + sec : sec;
+									let format = '';
+									format = `${hour} : ${min} : ${sec} `;
+									self.userList[i].remainTimeStr = format;
+								} else {
+									// 进行判断 如果数据内所有的倒计时已经结束，那么结束定时器， 如果没有那么继续执行定时器
+									let flag = self.userList.every((val, ind) => val.remainTime <= 0);
+									if (flag) clearInterval(timer);
+									self.userList[i].remainTimeStr = `00 : 00 : 00 `;
+								}
+							}
+						}, 1000)
+					})
 			}
 		}
 	}
@@ -106,14 +117,14 @@
 	}
 
 	.content {
-		margin: 10upx 10upx;
+		margin: 0upx 20upx;
 	}
 
 	.up {
 		display: flex;
 		height: 90upx;
 		line-height: 90upx;
-		font-size: 26upx;
+		font-size: 24upx;
 	}
 
 	.cuIcon-right {
@@ -127,39 +138,41 @@
 
 	/* 拼单详情 */
 	.wai {
-		height: 230upx;
+		height: 220upx;
 		overflow: hidden;
 	}
 
 	.list {
-		height: 115upx;
+		height: 110upx;
 	}
 
 	.middle {
 		display: flex;
-		height: 115upx;
+		height: 112upx;
 		border-top: 2upx solid #ccc;
 	}
 
 	.user {
 		margin: auto 0;
 		font-weight: bold;
+		font-size: 22upx
 	}
 
 	.img {
-		width: 100%;
-		height: 100%;
+		width: 62upx;
+		height: 62upx;
 		border-radius: 50%;
 	}
 
 	.name {
-		margin: 10upx;
-		font-size: 26upx;
+		line-height: 62upx;
+		margin-left: 20upx;
+		font-size: 24upx;
 	}
 
 	.two {
 		flex: 1;
-		margin: 20upx 10upx;
+		margin: 20upx 20upx;
 		display: flex;
 		flex-direction: column;
 	}
@@ -177,7 +190,7 @@
 
 	.time {
 		text-align: right;
-		font-size: 24upx;
+		font-size: 22upx;
 		flex: 1;
 	}
 
@@ -190,9 +203,9 @@
 		color: #fff;
 		background: red;
 		width: 160upx;
-		height: 68upx;
-		line-height: 68upx;
-		font-size: 26upx;
+		height: 70upx;
+		line-height: 70upx;
+		font-size: 24upx;
+		border-radius: 5upx;
 	}
 </style>
-
