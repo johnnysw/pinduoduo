@@ -1,10 +1,10 @@
 <template>
 	<view class="content">
 		<!-- 地址列表begin -->
-		<ul v-for='(item,index) in address' :key='index' class="address-wrapper" @click='checkadd(item,index)'>
-			<li class="address-name">{{item.name}}</li>
-			<li class="address-called">{{item.called}}</li>
-			<li class="address-add">{{item.add}}</li>
+		<ul v-for='(item,index) in address' :key='index' class="addressWrapper" @click='checkAdd(item,index)'>
+			<li class="addressName">{{item.name}}</li>
+			<li class="addressCalled">{{item.called}}</li>
+			<li class="addressAdd">{{item.add}}</li>
 		</ul>
 		<!-- 地址列表end -->
 	</view>
@@ -24,7 +24,7 @@
 			
 		},
 		methods: {
-			checkadd(item,index){
+			checkAdd(item,index){
 				console.log(index)
 				uni.navigateTo({
 					url: '../confirm-order/confirm-order?id='+index
@@ -43,7 +43,7 @@
 	page{
 		background-color: #eee;
 	}
-	.address-wrapper{
+	.addressWrapper{
 		background-color: white;
 		width: 710upx;
 		font-size: 28upx;
@@ -53,19 +53,19 @@
 		margin-top:20upx ;
 		overflow: hidden;
 	}
-	.address-name{
+	.addressName{
 		position: relative;
 		float: left;
 		margin-top: 24upx;
 		margin-left: 20upx;
 	}
-	.address-called{
+	.addressCalled{
 		position: relative;
 		/* float: none; */
 		margin-top: 24upx; 
 		left: 20upx;
 	}
-	.address-add{
+	.addressAdd{
 		clear: both;
 		font-size: 24upx;
 		margin-top: 20upx;

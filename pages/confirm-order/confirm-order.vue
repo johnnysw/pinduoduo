@@ -2,19 +2,19 @@
 	<view class="content">
 		<!-- 添加地址begin -->
 		<!-- 当前未选择地址begin -->
-		<view class="add-add" v-if="addtag=='0'" @click="addaddress">
-			<image src="../../static/img/confirm-order/add.jpg" class="add-add-image"></image>
-			<view class="add-add-words">手动添加地址</view>
-			<image src="../../static/img/confirm-order/right.jpg" class="add-add-image2"></image>
+		<view class="addAdd" v-if="addTag=='0'" @click="addaddress">
+			<image src="../../static/img/confirm-order/add.jpg" class="addAddImage"></image>
+			<view class="addAddWords">手动添加地址</view>
+			<image src="../../static/img/confirm-order/right.jpg" class="addAddImage2"></image>
 		</view>
 		<!-- 当前未选择地址end -->
 		<!-- 当前已选择地址begin -->
-		<view class="add-add-detail" v-if="addtag=='1'"  @click="addaddress">
+		<view class="addAddDetail" v-if="addTag=='1'"  @click="addaddress">
 			<image src="../../static/img/confirm-order/right.jpg" mode=""></image>
-			<ul class="add-add-wrapper">
-				<li class="add-add-name">{{addaddresscheck.name}}</li>
-				<li class="add-add-called">{{addaddresscheck.called}}</li>
-				<li class="add-add-add">{{addaddresscheck.add}}</li>
+			<ul class="addAddWrapper">
+				<li class="addAddName">{{addaddressCheck.name}}</li>
+				<li class="addAddCalled">{{addaddressCheck.called}}</li>
+				<li class="addAddAdd">{{addaddressCheck.add}}</li>
 			</ul>
 		</ul>
 		</view>
@@ -22,39 +22,39 @@
 		<!-- 添加地址end -->
 		
 		<!-- 下单商品详情begin -->
-		<view class="order-details">
-			<image :src="goods.image" class="order-details-image"></image>
-			<view class="order-details-words">
+		<view class="orderDetails">
+			<image :src="goods.image" class="orderDetailsImage"></image>
+			<view class="orderDetailsWords">
 				{{goods.detail}}
 			</view>
-			<view class="order-details-type">
+			<view class="orderDetailsType">
 				<text>购买类型：{{goods.type}}</text>
 			</view>
-			<view class="order-details-price">
+			<view class="orderDetailsPrice">
 				¥ {{goods.price}}
 			</view>
-			<view class="order-details-wrapper">
-				<view class="order-details-number">
+			<view class="orderDetailsWrapper">
+				<view class="orderDetailsNumber">
 					购买数量
-					<view class="order-details-number-wrapper">
-						<view class="order-details-number-dec" @click="decnumber">
+					<view class="orderDetailsNumberWrapper">
+						<view class="orderDetailsNumberDec" @click="decnumber">
 							-
 						</view>
-						<view class="order-details-number-value">
-							{{goodsnumber}}
+						<view class="orderDetailsNumberValue">
+							{{goodsNumber}}
 						</view>
-						<view class="order-details-number-add" @click="addnumber">
+						<view class="orderDetailsNumberAdd" @click="addnumber">
 							+
 						</view>
 					</view>
 				</view>
-				<view class="order-details-off">
+				<view class="orderDetailsOff">
 					使用优惠
 					<view class="">
 						<image src="../../static/img/confirm-order/right.jpg" mode=""></image>
 					</view>
 				</view>
-				<view class="order-details-other">
+				<view class="orderDetailsOther">
 					订单备注
 				</view>
 			</view>
@@ -62,14 +62,14 @@
 		<!-- 下单商品详情end -->
 		
 		<!-- 方式选择begin -->
-		<view class="payment-method">
-			<view class="payment-method-first">
-				<view class="payment-method-first-words">
+		<view class="paymentMethod">
+			<view class="paymentMethodFirst">
+				<view class="paymentMethodFirstWords">
 					货到付款
 				</view>
 			</view>
-			<view class="payment-method-second">
-				<view class="payment-method-second-words">
+			<view class="paymentMethodSecond">
+				<view class="paymentMethodSecondWords">
 					orange
 				</view>
 			</view>
@@ -84,15 +84,15 @@
 		<!-- 方式选择end -->
 		
 		<!-- bottom begin -->
-		<view class="bottom-wrapper">
-			<view class="bottom-wrapper-number">
-				<text>共{{goodsnumber}}件</text>
+		<view class="bottomWrapper">
+			<view class="bottomWrapperNumber">
+				<text>共{{goodsNumber}}件</text>
 			</view>
-			<view class="bottom-wrapper-price">
-				合计：<text>¥{{this.numberprice}}</text>
+			<view class="bottomWrapperPrice">
+				合计：<text>¥{{this.numberPrice}}</text>
 				<text></text>
 			</view>
-			<view class="bottom-wrapper-button">
+			<view class="bottomWrapperButton">
 				提交订单
 			</view>
 		</view>
@@ -104,16 +104,16 @@
 	export default {
 		data() {
 			return {
-				addtag:'0',//有无选择地址标示
-				goodsnumber:1,//初始商品个数
-				numberprice:350,//商品单价
-				addid:'',//选择地址id
+				addTag:'0',//有无选择地址标示
+				goodsNumber:1,//初始商品个数
+				numberPrice:350,//商品单价
+				addId:'',//选择地址id
 				goods:{image:'../../static/img/confirm-order/1.jpg',detail:'经典百搭版型  棉质外套  2019新款春秋装中长款卡其色女士风衣',type:'xl 卡其',price:'350'},
-				additem:[{name:'Felix',called:'13113331222',add:'黑龙江省 哈尔滨市 香坊区 铁东街道 长江路600号东北农业大学电气与信息学院（原工程学院）'},
+				addItem:[{name:'Felix',called:'13113331222',add:'黑龙江省 哈尔滨市 香坊区 铁东街道 长江路600号东北农业大学电气与信息学院（原工程学院）'},
 				{name:'Felix',called:'13113331333',add:'黑龙江省 哈尔滨市 香坊区 铁东街道 长江路600号东北农业大学教学楼'},
 				{name:'Felix',called:'13113331555',add:'黑龙江省 哈尔滨市 香坊区 铁东街道 长江路600号东北农业大学主楼'},
 				{name:'Felix',called:'13113331666',add:'黑龙江省 哈尔滨市 香坊区 铁东街道 长江路600号东北农业大学成栋楼'}],//备选地址
-				addaddresscheck:[],//选择地址对象
+				addaddressCheck:[],//选择地址对象
 				items: [{
                     value: '货到付款',
                     name: ''
@@ -128,14 +128,14 @@
 		},
 		//初始判断地址有无选择
 		onLoad(option) {
-			this.addid=option.id
-			console.log(this.addid)
-			this.addaddresscheck=this.additem[option.id]
-			console.log(this.addaddresscheck)
-			if(!this.addid){
+			this.addId=option.id
+			console.log(this.addId)
+			this.addaddressCheck=this.addItem[option.id]
+			console.log(this.addaddressCheck)
+			if(!this.addId){
 				console.log('none')
 			}else{
-				this.addtag='1';
+				this.addTag='1';
 			}
 		},
 		methods: {
@@ -157,14 +157,14 @@
 			},
 			//添加商品个数
 			addnumber:function(){
-				this.goodsnumber+=1;
-				this.numberprice=this.goods.price*this.goodsnumber
+				this.goodsNumber+=1;
+				this.numberPrice=this.goods.price*this.goodsNumber
 			},
 			//减少商品个数
 			decnumber:function(){
-				if(this.goodsnumber>1){
-					this.goodsnumber-=1;
-					this.numberprice=this.goods.price*this.goodsnumber
+				if(this.goodsNumber>1){
+					this.goodsNumber-=1;
+					this.numberPrice=this.goods.price*this.goodsNumber
 				}
 			}
 		}
@@ -184,7 +184,7 @@
 	.content {
 		overflow: hidden;
 	}
-	.add-add{
+	.addAdd{
 		width: 710upx;
 		height: 90upx;
 		background: white;
@@ -192,14 +192,14 @@
 		margin-top: 20upx;
 		position: relative;
 	}
-	.add-add-words{
+	.addAddWords{
 		font-size: 24upx;
 		color: #333;
 		line-height: 90upx;
 		position: relative;
 		left: 70upx;
 	}
-	.add-add-image{
+	.addAddImage{
 		width: 30upx;
 		height: 30upx;
 		float: left;
@@ -208,7 +208,7 @@
 		transform: translate(0,-50%);
 		margin-left: 20upx;
 	}
-	.add-add-image2{
+	.addAddImage2{
 		width: 14upx;
 		height: 24upx;
 		float: left;
@@ -217,7 +217,7 @@
 		transform: translate(0,-50%);
 		margin-left: 676upx;
 	}
-	.add-add-detail{
+	.addAddDetail{
 		width: 710upx;
 		// height: 120upx;
 		background-color: white;
@@ -225,7 +225,7 @@
 		margin: 20upx auto;
 		// overflow: hidden;
 	}
-	.add-add-wrapper{
+	.addAddWrapper{
 		background-color: white;
 		width: 710upx;
 		font-size: 28upx;
@@ -235,7 +235,7 @@
 		margin-top:20upx ;
 		overflow: hidden;
 	}
-	.add-add-detail image{
+	.addAddDetail image{
 		width: 14upx;
 		height: 24upx;
 		position: absolute;
@@ -244,19 +244,19 @@
 		transform: translate(0,-50%);
 		z-index: 2;
 	}
-	.add-add-name{
+	.addAddName{
 		position: relative;
 		float: left;
 		margin-top: 24upx;
 		margin-left: 20upx;
 	}
-	.add-add-called{
+	.addAddCalled{
 		position: relative;
 		/* float: none; */
 		margin-top: 24upx; 
 		left: 20upx;
 	}
-	.add-add-add{
+	.addAddAdd{
 		clear: both;
 		font-size: 24upx;
 		margin-top: 20upx;
@@ -268,7 +268,7 @@
 	
 	
 	
-	.order-details{
+	.orderDetails{
 		width: 710upx;
 		height: 470upx;
 		background: white;
@@ -276,14 +276,14 @@
 		margin-top: 20upx;
 		position: relative;
 	}
-	.order-details-image{
+	.orderDetailsImage{
 		width: 160upx;
 		height: 160upx;
 		position: absolute;
 		left: 20upx;
 		top: 20upx;
 	}
-	.order-details-words{
+	.orderDetailsWords{
 		corlor:#333;
 		font-size: 24upx;
 		width: 491upx;
@@ -293,7 +293,7 @@
 		line-height: 26.5upx;
 		
 	}
-	.order-details-type{
+	.orderDetailsType{
 		// width: 180upx;
 		height: 40upx;
 		background: #eee;
@@ -303,18 +303,18 @@
 		font-size: 25upx;
 		color: #999;
 	}
-	.order-details-type text{
+	.orderDetailsType text{
 		display: block;
 		transform: scale(0.8);
 	}
-	.order-details-price{
+	.orderDetailsPrice{
 		position: absolute;
 		left: 199upx;
 		top: 149upx;
 		font-size: 26upx;
 		color: #EF1C00;
 	}
-	.order-details-wrapper{
+	.orderDetailsWrapper{
 		width: 670upx;
 		height: 270upx;
 		position: absolute;
@@ -322,7 +322,7 @@
 		left: 50%;
 		transform: translate(-50%,0);
 	}
-	.order-details-number,.order-details-off,.order-details-other{
+	.orderDetailsNumber,.orderDetailsOff,.orderDetailsOther{
 		width: 100%;
 		height: 90upx;
 		border-top: 1px solid #ddd;
@@ -331,14 +331,14 @@
 		line-height: 90upx;
 		position: relative;
 	}
-	.order-details-number-wrapper{
+	.orderDetailsNumberWrapper{
 		width: 180upx;
 		height: 38upx;
 		position: absolute;
 		top: 25upx;
 		right: 0upx;
 	}
-	.order-details-number-wrapper view{
+	.orderDetailsNumberWrapper view{
 		position: absolute;
 		top: 0;
 		line-height: 38upx;
@@ -346,24 +346,24 @@
 		text-align: center;
 		color: #999;
 	}
-	.order-details-number-dec{
+	.orderDetailsNumberDec{
 		width: 50upx;
 		background-color: #eee;
 		border-radius: 5upx;
 	}
-	.order-details-number-value{
+	.orderDetailsNumberValue{
 		width: 60upx;
 		background-color: #eee;
 		border-radius: 5upx;
 		margin-left: 60upx;
 	}
-	.order-details-number-add{
+	.orderDetailsNumberAdd{
 		width: 50upx;
 		background-color: #eee;
 		border-radius: 5upx;
 		margin-left: 130upx;
 	}
-	.order-details-off image{
+	.orderDetailsOff image{
 		width: 14upx;
 		height: 24upx;
 		position: absolute;
@@ -371,7 +371,7 @@
 		right: 0;
 		transform: translate(0,-50%);
 	}
-	.payment-method{
+	.paymentMethod{
 		width: 710upx;
 		height: 180upx;
 		background: white;
@@ -379,7 +379,7 @@
 		margin-top: 20upx;
 		position: relative;
 	}
-	.payment-method-first,.payment-method-second{
+	.paymentMethodFirst,.paymentMethodSecond{
 		height: 90upx;
 		width: 670upx;
 		color: #333;
@@ -388,28 +388,28 @@
 		position: relative;
 		margin: 0 auto;
 	}
-	.payment-method-first{
+	.paymentMethodFirst{
 		border-bottom: 1px solid #ddd;
 	}
-	.payment-method label{
+	.paymentMethod label{
 		position: absolute;
 		transform: translate(0,-50%);
 		right: 20upx;
 	}
-	.payment-method label:nth-child(1){
+	.paymentMethod label:nth-child(1){
 		top: 45upx;
 	}
-	.payment-method label:nth-child(2){
+	.paymentMethod label:nth-child(2){
 		top: 135upx;
 	}
-	.bottom-wrapper{
+	.bottomWrapper{
 		width: 100%;
 		height: 99upx;
 		background-color: white;
 		position: fixed;
 		bottom: 0;
 	}
-	.bottom-wrapper-number{
+	.bottomWrapperNumber{
 		color: #999;
 		position: absolute;
 		top: 50%;
@@ -417,21 +417,21 @@
 		left: 283upx;
 		font-size: 25upx;
 	}
-	.bottom-wrapper-number text{
+	.bottomWrapperNumber text{
 		display: block;
 		transform: scale(0.8);
 	}
-	.bottom-wrapper-price{
+	.bottomWrapperPrice{
 		position: absolute;
 		top: 50%;
 		transform: translate(0,-50%);
 		left: 370upx;
 		font-size: 24upx;
 	}
-	.bottom-wrapper-price text{
+	.bottomWrapperPrice text{
 		color: #EF1C00;
 	}
-	.bottom-wrapper-button{
+	.bottomWrapperButton{
 		width: 200upx;
 		height: 98upx;
 		background: #EF1C00;
