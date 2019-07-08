@@ -20,6 +20,7 @@
 					"bounce": "none"
 				}
 			}
+<<<<<<< HEAD
 		},
 		{
 			"path": "pages/confirm-order/confirm-order",
@@ -43,6 +44,18 @@
 				}
 			}
 		}
+=======
+		},{
+			"path": "pages/product_list/product_list",
+			"style": {
+				"bounce" : "none" ,
+				"navigationBarTitleText":"商品列表",
+				"navigationBarBackgroundColor":"white",
+                "enablePullDownRefresh": true
+				
+				}}
+      
+>>>>>>> tmp
 	    ,{
             "path" : "pages/liveproductlist/liveproductlist",
             "style" : {
