@@ -32,6 +32,11 @@
             "path" : "pages/collageSheet/collageSheet",
             "style" : {}
         }
+        ,{
+            "path" : "pages/shoppingCart/shoppingCart",
+            "style" : {}
+        }
+
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
