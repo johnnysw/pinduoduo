@@ -20,7 +20,6 @@
 					"bounce": "none"
 				}
 			}
-<<<<<<< HEAD
 		},
 		{
 			"path": "pages/confirm-order/confirm-order",
@@ -44,8 +43,7 @@
 				}
 			}
 		}
-=======
-		},{
+		,{
 			"path": "pages/product_list/product_list",
 			"style": {
 				"bounce" : "none" ,
@@ -55,7 +53,6 @@
 				
 				}}
       
->>>>>>> tmp
 	    ,{
             "path" : "pages/liveproductlist/liveproductlist",
             "style" : {
