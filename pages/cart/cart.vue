@@ -1,14 +1,16 @@
 <template>
 	<view>
+	<view @click='toggleSpec()'>点击加入购物车</view>
+	<view class="popup" :class="specClass" @click="toggleSpec()" @touchmove.stop.prevent="stopPrevent">
 		<view class='shadow'></view><!-- 阴影层 -->
-		<view class='cart'><!-- 购物车部分，分为不动头尾与可滚动中间部分 -->
+		<view class='cart' @click.stop="stopPrevent"><!-- 购物车部分，分为不动头尾与可滚动中间部分 -->
 			<view class='header'>
 				<img src="../../static/cate1.jpg" alt="">
 				<view class='text'>
 					<view><strong>￥{{this.price}}</strong></view>
 					<text>请选择:颜色分类 尺寸</text>
 				</view>
-				<text class='lg text-gray cuIcon-close'></text>
+				<text class='lg text-gray cuIcon-close' @click='toggleSpec()'></text>
 			</view>
 			<view class='content'>
 				<view class='list' v-for='(item,index) in bigList' :key='index'>
@@ -26,7 +28,8 @@
 				</view>
 			</view>
 		</view>
-		<view class='footer'>确定</view>
+		<view class='footer' @click="toggleSpec()">确定</view>
+	</view>
 	</view>
 </template>
 
@@ -34,7 +37,7 @@
 	export default {
 		data() {
 			return {
-
+				specClass: 'none',
 				specSelected: [],
 				shuliang: 1,
 				price: 350,
@@ -103,6 +106,19 @@
 			})
 		},
 		methods: {
+			//阻止事件冒泡
+			stopPrevent(){},
+			// 弹出窗与弹回窗
+			toggleSpec() {
+				if(this.specClass === 'show'){
+					this.specClass = 'hide';
+					setTimeout(() => {
+						this.specClass = 'none';
+					}, 250);
+				}else if(this.specClass === 'none'){
+					this.specClass = 'show';
+				}
+			},
 			add() {
 				this.shuliang++;
 			},
@@ -131,7 +147,7 @@
 	}
 </script>
 
-<style>
+<style lang='scss'>
 	.shadow {
 		position: fixed;
 		top: 0;
@@ -142,7 +158,7 @@
 	}
 
 	.cart {
-		z-index: 99;
+		z-index: 100;
 		width: 100%;
 		height: 520upx;
 		position: fixed;
@@ -255,4 +271,72 @@
 		background: #fff;
 		border: 2upx solid #ee1d00;
 	}
+	/* 弹出窗部分 */
+	.popup {
+		position: fixed;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 99;
+		
+		&.show {
+			display: block;
+			.shadow{
+				animation: showPopup 0.2s linear both;
+			}
+			.cart {
+				animation: showLayer 0.2s linear both;
+			}
+			.footer {
+				animation: showLayer 0.2s linear both;
+			}
+		}
+		&.hide {
+			.shadow{
+				animation: hidePopup 0.2s linear both;
+			}
+			.cart {
+				animation: hideLayer 0.2s linear both;
+			}
+			.footer {
+				animation: hideLayer 0.2s linear both;
+			}
+		}
+		&.none {
+			display: none;
+		}
+		@keyframes showPopup {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+			}
+		}
+		@keyframes hidePopup {
+			0% {
+				opacity: 1;
+			}
+			100% {
+				opacity: 0;
+			}
+		}
+		@keyframes showLayer {
+			0% {
+				transform: translateY(120%);
+			}
+			100% {
+				transform: translateY(0%);
+			}
+		}
+		@keyframes hideLayer {
+			0% {
+				transform: translateY(0);
+			}
+			100% {
+				transform: translateY(120%);
+			}
+		}
+		}
 </style>
