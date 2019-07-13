@@ -41,6 +41,22 @@
             "path" : "pages/collageSheet/collageSheet",
             "style" : {}
         }
+        ,{
+            "path" : "pages/integralList/integralList",
+            "style" : {
+				"app-plus":{
+					"titleNView": false
+				}
+			}
+        }
+        ,{
+            "path" : "pages/integralRules/integralRules",
+            "style" : {
+				"app-plus":{
+					"titleNView": false
+				}
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
