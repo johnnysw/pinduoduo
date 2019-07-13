@@ -41,6 +41,14 @@
             "path" : "pages/collageSheet/collageSheet",
             "style" : {}
         }
+        ,{
+            "path" : "pages/commodityDetails/commodityDetails",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/goumaileixing/goumaileixing",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

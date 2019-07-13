@@ -163,6 +163,10 @@
 		height: 62upx;
 		border-radius: 50%;
 	}
+	.cu-avatar{
+		width: 62upx;
+		height: 62upx;
+	}
 
 	.name {
 		line-height: 62upx;
