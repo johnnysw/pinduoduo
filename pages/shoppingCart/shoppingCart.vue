@@ -21,16 +21,21 @@
 					</view>
 				</view>
 			</view>
-</checkbox-group>
-<checkbox-group @change="checkboxAllChange">
-			<view class="fixed-bar">
+		</checkbox-group>
+		<checkbox-group @change="checkboxAllChange">			
+			<view class="fixed-bar">       <!-- 收藏删除操作bar -->             
 				<checkbox class='round red' :class="checkAll?'checked':''" :checked="checkAll?true:false" value="all"></checkbox>
-				<view class="fixed-btn">
+				<view class="fixed-btn" v-if="0">
 					<view class="remove" @click="remove()">移入收藏夹</view>
 					<view class="delete" @click="del()">删除</view>
 				</view>
+				<view v-else class="fixed-btn">                <!-- 结算操作bar -->                
+					<text class="totalNum">共{{totalNum}}件</text>
+					<view class="totalPrice">合计:<span>￥{{totalPrice}}</span></view>
+					<view class="computed" @click="accout">结算</view>
+				</view>
 			</view>
-	</checkbox-group>	
+		</checkbox-group>
 	</scroll-view>
 </template>
 
@@ -38,10 +43,9 @@
 	export default {
 		data() {
 			return {
-				box: [{
-					checked: false
-				}],
-				checkAll:false,
+				// totalNum: 0,
+				// totalPrice: 0,
+				checkAll: false,
 				arrayId: [],
 				productList: [{
 						price: 350,
@@ -49,7 +53,7 @@
 						title: "经典百搭版型 棉质外套 2019新款春秋装中长款卡其色女士风衣",
 						checked: false,
 						id: 'a',
-						num: 0
+						num: 1
 					},
 					{
 						price: 350,
@@ -57,7 +61,7 @@
 						title: "经典百搭版型 棉质外套 2019新款春秋装中长款卡其色女士风衣",
 						checked: false,
 						id: 'b',
-						num: 0
+						num: 1
 					}
 				],
 
@@ -78,48 +82,69 @@
 
 			checkboxChange: function(e) {
 				var items = this.productList;
-				var	values = e.detail.value;
+				var values = e.detail.value;
 				console.log(values);
 				this.arrayId = values;
 				for (var i = 0, lenI = items.length; i < lenI; ++i) {
-					const item = items[i]
+					const item = items[i];
 					if (values.includes(item.id)) {
-						this.$set(item, 'checked', true)
-					} else {
-						this.$set(item, 'checked', false)
+						this.$set(item, 'checked', true)	
+					} 
+					else {
+						this.$set(item, 'checked', false);	
+					}
+
+				}
+				
+				console.log(this.totalNum,this.totalPrice);
+			},
+			checkboxAllChange: function(e) {
+				var values = e.detail.value;
+				var items = this.productList;
+				if (values.includes("all")) {
+					this.checkAll = true;
+					for (var i = 0, lenI = items.length; i < lenI; ++i) {
+						const item = items[i]
+						this.$set(item, 'checked', true);
+					}
+				} else {
+					this.checkAll = false;
+					for (var i = 0, lenI = items.length; i < lenI; ++i) {
+						const item = items[i]
+						this.$set(item, 'checked', false);
 					}
 				}
-			},
-			checkboxAllChange:function(e){
-					var values = e.detail.value;
-					var items = this.productList;
-					if (values.includes("all")) {
-						this.checkAll = true;
-						for (var i = 0, lenI = items.length; i < lenI; ++i)
-						{
-							const item = items[i]
-							this.$set(item,'checked',true);
-							// this.arrayId[i]=items[i].id;
-						}
-						
-					} else {
-						this.checkAll = false;
-						// this.arrayId=[];
-						for (var i = 0, lenI = items.length; i < lenI; ++i)
-						{
-							const item = items[i]
-							this.$set(item,'checked',false);
-							
-						}
-					}
+
 				console.log(this.arrayId);
 			},
 			remove() {
 				console.log(Array.from(this.arrayId));
-				
 			},
 			del() {
 				console.log(Array.from(this.arrayId));
+			},
+			accout(){
+				
+			}
+		},
+		computed:{
+			totalPrice(){ 
+				let sum=0;
+                this.productList.filter((elem,index)=>{
+                    if(elem.checked){
+                        sum+=elem.price*elem.num;
+                    }
+                })
+                return sum;
+			},			
+			totalNum(){
+				let sum=0;
+				this.productList.filter((elem,index)=>{
+				    if(elem.checked){
+				        sum+=elem.num;
+				    }
+				})
+				return sum;
 			}
 		}
 	}
@@ -214,7 +239,6 @@
 	.fixed-bar {
 		height: 100upx;
 		width: 100%;
-		/* border: 1px solid #ffffff; */
 		background-color: #FFFFFF;
 		display: flex;
 		justify-content: space-between;
@@ -225,22 +249,40 @@
 	.fixed-btn {
 		line-height: 98upx;
 		height: 98upx;
+		display: flex;
+		justify-content: space-between;
+
 	}
 
 	.fixed-btn>view {
-		float: left;
 		width: 200upx;
 		color: #FFFFFF;
 		line-height: 98upx;
 		text-align: center;
 	}
 
+	.fixed-btn .totalNum {
+		color: #545452;
+		font-size: 20upx;
+	}
+
+	.fixed-btn .totalPrice {
+		color: #000000;
+		font-size: 24upx;
+	}
+
+	span {
+		color: #ef1c00;
+	}
+
 	.remove {
 		background-color: #f57766;
 	}
 
-	.delete {
+	.delete,
+	.computed {
 		background-color: #ef1c00;
+		font-size: 28upx;
 	}
 
 	button {
