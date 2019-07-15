@@ -41,6 +41,22 @@
             "path" : "pages/collageSheet/collageSheet",
             "style" : {}
         }
+        ,{
+            "path" : "pages/coupon/coupon",
+            "style" : {
+				"navigationBarTitleText": "我的优惠劵",
+				"navigationBarBackgroundColor": "white",
+				"app-plus":{
+					"titleSize":"24upx"
+				}
+			}
+        }
+        ,{
+            "path" : "pages/couponCenter/couponCenter",
+            "style" : {
+				"navigationBarTitleText": "领劵中心"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
