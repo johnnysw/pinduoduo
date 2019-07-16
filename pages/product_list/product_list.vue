@@ -40,8 +40,8 @@
 <script>
 	
 	import {uniLoadMore} from './../../static/uni-load-more'
-	var  _self;
-	var  page = 1;
+	var _self;
+	var page = 1;
 	export default {
 		data() {
 			return {					

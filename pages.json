@@ -3,12 +3,17 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": ""
-			}
-		}, {
+				"navigationBarTitleText": "非洲版拼多多",
+				"app-plus":{
+					"titleNView":false
+				}
+			}	
+		}, 
+		{
 			"path": "pages/cart/cart",
 			"style": {}
-		}, {
+		}, 
+		{
 			"path": "pages/service/service",
 			"style": {
 				"navigationBarTitleText": "客服",
@@ -20,7 +25,6 @@
 					"bounce": "none"
 				}
 			}
-<<<<<<< HEAD
 		},
 		{
 			"path": "pages/confirm-order/confirm-order",
@@ -43,9 +47,8 @@
 					"bounce": "none"
 				}
 			}
-		}
-=======
-		},{
+		},
+		{
 			"path": "pages/product_list/product_list",
 			"style": {
 				"bounce" : "none" ,
@@ -53,20 +56,20 @@
 				"navigationBarBackgroundColor":"white",
                 "enablePullDownRefresh": true
 				
-				}}
-      
->>>>>>> tmp
-	    ,{
+				}
+		},
+		{
             "path" : "pages/liveproductlist/liveproductlist",
             "style" : {
 				"navigationBarTitleText": "直播",
 				"app-plus":{"titleNView":false}
 			}
-		}
-        ,{
+		},
+        {
             "path" : "pages/collageSheet/collageSheet",
             "style" : {}
-        },{
+        },
+		{
             "path" : "pages/purchase_list/purchase_list",
             "style" : {
 				"navigationBarTitleText": "团购列表",
@@ -74,11 +77,57 @@
 			}
         }
 		
+        ,{
+            "path" : "pages/index-search/index-search",
+            "style" : {
+				"navigationBarTitleText": "",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar":{
+		"color": "#999999",
+		"selectedColor": "#EF1C00",
+		"borderStyle": "white",
+		"backgroundColor": "#ffffff",
+		"list": [{  //pagepath处写入想跳转的路径即可
+				"pagePath": "pages/index/index",
+				"iconPath": "static/index-img/home.png",
+				"selectedIconPath": "static/index-img/home-current.png",
+				"text": "首页"
+			},
+			{
+				// "pagePath": ,
+				"iconPath": "static/index-img/category.png",
+				"selectedIconPath": "static/index-img/category-current.png",
+				"text": "分类"
+			},
+			{
+				"pagePath": "pages/liveproductlist/liveproductlist",
+				"iconPath": "static/index-img/live.png",
+				"selectedIconPath": "static/index-img/live-current.png",
+				"text": "直播"
+			},
+			{
+				// "pagePath": ,
+				"iconPath": "static/index-img/cart.png",
+				"selectedIconPath": "static/index-img/cart-current.png",
+				"text": "购物车"
+			},
+			{
+				//  "pagePath":,
+				"iconPath": "static/index-img/profile.png",
+				"selectedIconPath": "static/index-img/profile-current.png",
+				"text": "我的"
+			}
+		]
 	}
 }
